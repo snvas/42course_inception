@@ -5,7 +5,7 @@ LOOKDOMAIN = $(shell grep "${DOMAIN}" /etc/hosts)
 
 all: hosts build up
 
-build: hosts
+build:
 	${SRC} && docker-compose build
 	sudo mkdir -p /home/snovaes/data/database
 	sudo mkdir -p /home/snovaes/data/wordpress
