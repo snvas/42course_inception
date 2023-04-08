@@ -1,8 +1,8 @@
 FROM debian:buster
 
 # Install MariaDB server and client
-RUN apt-get update
-RUN	apt-get install -y mariadb-server mariadb-client && \
+RUN apt update
+RUN	apt install -y mariadb-server mariadb-client && \
 	rm -rf /var/lib/apt/lists/*
 
 # Allow mysqld daemon to run, purge and recreate /var/lib/mysql with appropriate ownership

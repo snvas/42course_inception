@@ -10,6 +10,9 @@ build:
 	sudo mkdir -p /home/snovaes/data/wordpress
 	${SRC} && docker-compose build
 
+rebuild:
+	sudo docker-compose -f srcs/docker-compose.yml build --no-cache
+
 up:
 	${SRC} && docker-compose up -d
 
@@ -23,11 +26,11 @@ hosts:
 	fi
 
 down:
-	${SRC} && docker-compose down
+	${SRC} && docker-compose down -v --rmi all --remove-orphans
 
 re: fclean all
 
 fclean: down
 	sudo mv ./hosts_bkp /etc/hosts || echo "hosts_bkp does not exist"
-	docker system prune -a --volumes
-	sudo rm -fr /home/snovaes/data
+	sudo rm -rf /home/snovaes/data
+	sudo docker system prune --volumes --all --force

@@ -18,7 +18,7 @@ volumes:
         device: /home/snovaes/data/database
 
 networks:
-  network:
+  inception:
     driver: bridge
 
 services:
@@ -32,7 +32,7 @@ services:
     volumes:
       - database-data:/var/lib/mysql
     networks:
-      - network
+      - inception
 
   wordpress:
     depends_on:
@@ -51,7 +51,7 @@ services:
     volumes:
       - wordpress-data:/var/www/html
     networks:
-      - network
+      - inception
 
   nginx:
     depends_on:
@@ -67,4 +67,49 @@ services:
     volumes:
       - wordpress-data:/var/www/html
     networks:
-      - network
+      - inception
+
+#Bonus
+  redis:
+    container_name: redis
+    build: ./requirements/bonus/redis
+    depends_on:
+      - wordpress
+    restart: always
+    networks:
+      - inception
+    ports: 
+      - "6379:6379"
+  
+  ftp-server:
+    build: ./requirements/bonus/ftp-server
+    container_name: ftp-server
+    ports:
+      - "21:21"
+      - "21000-21010:21000-21010"
+    depends_on:
+      - nginx
+    volumes:
+      - wordpress-data:/var/www/html
+    networks:
+      - inception
+    restart: always
+    env_file:
+      - .env
+  adminer:
+    container_name: adminer
+    build: ./requirements/bonus/adminer
+    image: adminer
+    depends_on:
+      - mariadb
+    restart: always
+    ports:
+       - "8080:8080"
+    networks:
+       - inception
+  site:
+    build: ./requirements/bonus/site
+    container_name: site
+    restart: always
+    networks:
+      - inception

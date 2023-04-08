@@ -2,7 +2,7 @@ FROM debian:buster
 
 #updates the package lists and installs the required packages - wget for downloading files, 
 #and PHP 7.3 with FPM and MySQL extensions for running WordPress.
-RUN apt-get update && apt-get install -y \
+RUN apt update && apt install -y \
 				wget				\
 				# Wordpress core depencencies
 				php7.3				\
