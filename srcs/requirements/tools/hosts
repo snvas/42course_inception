@@ -1,6 +1,6 @@
 127.0.0.1       localhost
 127.0.1.1       42saopaulo
-127.0.0.1       snovaes-.42.fr
+127.0.0.1       snovaes.42.fr
 
 # The following lines are desirable for IPv6 capable hosts
 ::1     ip6-localhost ip6-loopback

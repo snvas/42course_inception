@@ -1,4 +1,25 @@
-version: "3"
+version: "3.5"
+
+volumes:
+  wordpress-data:
+    name: wordpress
+    driver: local
+    driver_opts:
+        type: none
+        o: bind
+        device: /home/snovaes/data/wordpress
+
+  database-data:
+    name: mariadb
+    driver: local
+    driver_opts:
+        type: none
+        o: bind
+        device: /home/snovaes/data/database
+
+networks:
+  network:
+    driver: bridge
 
 services:
   mariadb:
@@ -47,22 +68,3 @@ services:
       - wordpress-data:/var/www/html
     networks:
       - network
-
-volumes:
-  wordpress-data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/snovaes/data/wordpress
-
-  database-data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/snovaes/data/database
-
-networks:
-  network:
-    driver: bridge
