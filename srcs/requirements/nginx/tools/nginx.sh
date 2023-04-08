@@ -4,7 +4,7 @@ set -e
 
 #The mkdir command to create the directory and its parent directories if they don't exist
 # with the name stored in the $CERTS_ environment variable.
-mkdir -p ${CERTS_}
+mkdir -p CERTS_
 
 #The openssl req command generates a new self-signed SSL certificate and saves it to the 
 #$CERTS_/cert.crt file and the private key to $CERTS_/cert.key.

@@ -50,18 +50,18 @@ services:
 
 volumes:
   wordpress-data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/snovaes/data/wordpress
+  #  driver: local
+  #  driver_opts:
+   #   type: none
+   #   o: bind
+   #   device: /home/snovaes/data/wordpress
 
   database-data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/snovaes/data/database
+  #  driver: local
+  #  driver_opts:
+ #     type: none
+  #    o: bind
+  #    device: /home/snovaes/data/database
 
 networks:
   network:
