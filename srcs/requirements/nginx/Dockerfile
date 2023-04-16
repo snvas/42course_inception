@@ -4,7 +4,7 @@ FROM debian:buster
 #set -e at the beginning of the script to exit immediately if any command fails.
 #The RUN instruction executes the apt-get update and apt-get install commands 
 #to update the package list and install the necessary packages, in this case, nginx and openssl.
-RUN set -e && apt-get update && apt-get install -y nginx openssl && \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y nginx openssl && \
 	rm -rf /var/lib/apt/lists/*
 
 #The EXPOSE instruction exposes port 443 to allow incoming traffic.

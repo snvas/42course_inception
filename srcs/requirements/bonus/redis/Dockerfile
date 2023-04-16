@@ -1,10 +1,13 @@
-FROM debian:buster
+FROM alpine:3.16
 
-RUN apt update -y && \
-	apt install redis-server -y && \
-	apt install php-redis -y
+RUN apk update && apk upgrade && \
+    apk add --no-cache redis && \
+    sed -i "s/bind 127.0.0.1/#bind 127.0.0.1/g" /etc/redis.conf; \
+    sed -i "s/maxmemory <bytes>/maxmemory 256mb/g" /etc/redis.conf; \
+    sed -i "s/maxmemory-policy noeviction/maxmemory-policy allkeys-lfu/g" /etc/redis.conf; \
+    sed -i "s/protected-mode yes/protected-mode no/g" /etc/redis.conf; \
+    rm -rf /var/cache/apk/*
 
-COPY --chmod=640 ./conf/redis.conf	/etc/redis/redis.conf
-RUN service redis-server restart
+EXPOSE 6379
 
-CMD ["redis-server", "--protected-mode", "no"]
+CMD [ "/usr/bin/redis-server" , "/etc/redis.conf" ]

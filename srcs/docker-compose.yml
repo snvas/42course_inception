@@ -54,8 +54,6 @@ services:
       - inception
 
   nginx:
-    depends_on:
-      - wordpress
     build: ./requirements/nginx
     image: nginx
     container_name: nginx

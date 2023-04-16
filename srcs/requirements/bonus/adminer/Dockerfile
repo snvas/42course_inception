@@ -1,15 +1,16 @@
 FROM debian:buster
 
-EXPOSE 8000
+EXPOSE 8080
 
-RUN apt update -y
+RUN apt-get update && apt-get upgrade -y
 
-RUN apt install -y php7.3-fpm php7.3-mysql mariadb-client wget
+RUN apt-get install -y php7.3-fpm php7.3-mysql mariadb-client wget
 RUN rm -rf /var/lib/apt/lists/*
 
 COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d
 
-RUN mkdir /run/php
+RUN mkdir -p /var/www/adminer
+RUN mkdir -p /run/php
 
 ADD https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php /var/www/adminer/index.php
 

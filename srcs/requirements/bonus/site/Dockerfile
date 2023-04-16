@@ -1,8 +1,8 @@
 FROM debian:buster
 
-RUN apt update
+RUN apt-get update && apt-get upgrade -y
 
-RUN apt install nginx -y
+RUN apt-get install nginx -y
 
 COPY conf /etc/nginx/sites-available
 
@@ -12,6 +12,6 @@ RUN mkdir -p /var/www/site
 
 COPY tools /var/www/site
 
-EXPOSE 4000
+EXPOSE 7000
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
