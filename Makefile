@@ -25,6 +25,15 @@ hosts:
 		sudo cp ./srcs/requirements/tools/hosts /etc/hosts; \
 	fi
 
+list:
+	docker ps -a
+
+list-networks:
+	docker network ls
+
+list-volumes:
+	docker volume ls
+
 down:
 	${SRC} && docker-compose down -v --rmi all --remove-orphans
 
