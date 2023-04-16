@@ -41,13 +41,18 @@ services:
     image: wordpress
     container_name: wordpress
     restart: always
-    env_file:
-      - .env
     environment:
-      - WORDPRESS_DB_HOST=${MYSQL_HOSTNAME}
-      - WORDPRESS_DB_USER=${MYSQL_USER}
-      - WORDPRESS_DB_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - WORDPRESS_DB_NAME=${MYSQL_DATABASE}
+      - DOMAIN_NAME
+      - REDIS_HOST
+      - REDIS_PORT
+      - MYSQL_DATABASE
+      - MYSQL_HOSTNAME
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - WORDPRESS_NAME
+      - WORDPRESS_USER_EMAIL
+      - WORDPRESS_ROOT_LOGIN
+      - WORDPRESS_ROOT_EMAIL
     volumes:
       - wordpress-data:/var/www/html
     networks:
@@ -69,6 +74,7 @@ services:
 
   #Bonus
   redis:
+    image: redis
     container_name: redis
     build: ./requirements/bonus/redis
     depends_on:
@@ -76,8 +82,6 @@ services:
     restart: always
     networks:
       - inception
-    ports:
-      - "6379:6379"
 
   ftp-server:
     build: ./requirements/bonus/ftp-server

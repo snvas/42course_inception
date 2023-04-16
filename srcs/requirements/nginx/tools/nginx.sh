@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 #The mkdir command to create the directory and its parent directories if they don't exist
 # with the name stored in the $CERTS_ environment variable.
 mkdir -p $CERTS_
