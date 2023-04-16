@@ -36,9 +36,9 @@ list-volumes:
 down:
 	${SRC} && docker-compose down -v --rmi all --remove-orphans
 
-re: fclean all
-
 fclean: down
 	sudo mv ./hosts_bkp /etc/hosts || echo "hosts_bkp does not exist"
 	sudo rm -rf /home/snovaes/data
 	sudo docker system prune --volumes --all --force
+
+re: fclean all
