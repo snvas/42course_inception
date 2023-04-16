@@ -1,7 +1,6 @@
 #The FROM instruction sets the base image to be used for the Docker build
 FROM debian:buster
 
-#set -e at the beginning of the script to exit immediately if any command fails.
 #The RUN instruction executes the apt-get update and apt-get install commands 
 #to update the package list and install the necessary packages, in this case, nginx and openssl.
 RUN apt-get update && apt-get upgrade -y && apt-get install -y nginx openssl && \

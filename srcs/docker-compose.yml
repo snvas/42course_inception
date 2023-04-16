@@ -5,17 +5,17 @@ volumes:
     name: wordpress
     driver: local
     driver_opts:
-        type: none
-        o: bind
-        device: /home/snovaes/data/wordpress
+      type: none
+      o: bind
+      device: /home/snovaes/data/wordpress
 
   database-data:
     name: mariadb
     driver: local
     driver_opts:
-        type: none
-        o: bind
-        device: /home/snovaes/data/database
+      type: none
+      o: bind
+      device: /home/snovaes/data/database
 
 networks:
   inception:
@@ -67,7 +67,7 @@ services:
     networks:
       - inception
 
-#Bonus
+  #Bonus
   redis:
     container_name: redis
     build: ./requirements/bonus/redis
@@ -76,9 +76,9 @@ services:
     restart: always
     networks:
       - inception
-    ports: 
+    ports:
       - "6379:6379"
-  
+
   ftp-server:
     build: ./requirements/bonus/ftp-server
     container_name: ftp-server
@@ -94,6 +94,7 @@ services:
     restart: always
     env_file:
       - .env
+
   adminer:
     container_name: adminer
     build: ./requirements/bonus/adminer
@@ -102,9 +103,10 @@ services:
       - mariadb
     restart: always
     ports:
-       - "8080:8080"
+      - "8080:8080"
     networks:
-       - inception
+      - inception
+
   site:
     build: ./requirements/bonus/site
     container_name: site

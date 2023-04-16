@@ -1,4 +1,3 @@
-
 SRC = cd srcs/
 DOMAIN = 127.0.0.1       snovaes.42.fr
 LOOKDOMAIN = $(shell grep "${DOMAIN}" /etc/hosts)
